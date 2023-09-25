@@ -9,11 +9,11 @@ function clock(){
     secHand.style.transform= `rotate(${secDeg}deg)`;
     
     const minHand = document.querySelector('.minuteHand')
-    const minDeg = ((min/60)*360 )+ ((seconds/60)*6)  + 90
+    const minDeg = ((min/60)*360 )+ ((sec/60)*6)  + 90
     minHand.style.transform= `rotate(${minDeg}deg)`;
     
     const hrHand = document.querySelector('.hourHand')
-    const hrDeg = ((hr/12)*360 )+ ((mins/60)*30) + 90
+    const hrDeg = ((hr/12)*360 )+ ((hr/60)*30) + 90
     hrHand.style.transform= `rotate(${hrDeg}deg)`;
 
 
