@@ -1,6 +1,8 @@
 const searchBtn =document.getElementById('searchBtn')
+const locationBtn =document.getElementById('locationBtn')
 const detailsCard = document.getElementById('currentWeather')
 const weatherCards = document.getElementById('weatherCards')
+const weatherData = document.querySelector('.weather-data')
 
 const API_KEY='a65eccb9a2fc2d70d88820fd509163a1'
 
@@ -18,6 +20,7 @@ function convertFahrenheitTocelsius(temp){
 }
 
 function createWeatherCard(name,data, index){
+    weatherData.style.visibility="visible"
    if(index===0){
         return `
             <div>
@@ -98,4 +101,28 @@ function getCityCoordinates(){
     })
 }
 
+function getUserCoordinates(){
+    navigator.geolocation.getCurrentPosition(
+        position=>{
+        const {latitude, longitude} =position.coords
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`)
+        .then(res=>res.json())
+        .then(data=>{
+            const { name } = data.city;
+            console.log(data);
+            getWeatherDetails(name, latitude, longitude)
+        },
+
+        error=>{
+            if (error.code === error.PERMISSION_DENIED) {
+                alert("Geolocation request denied. Please reset location permission to grant access again.");
+            } else {
+                alert("Geolocation request error. Please reset location permission.");
+            }
+        }
+        )
+    });
+}
+
 searchBtn.addEventListener('click', getCityCoordinates)
+locationBtn.addEventListener('click', getUserCoordinates)

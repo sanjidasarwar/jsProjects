@@ -78,6 +78,7 @@ h1 {
 }
 .weather-data {
   width: 100%;
+  visibility: hidden;
 }
 .weather-data #currentWeather {
   color: #fff;
@@ -171,4 +172,16 @@ h1 {
   .weather-data h2 {
     font-size: 1.35rem;
   }
+}
+ul#weatherCards{
+  display: flex;
+  justify-content: space-between;
+}
+
+li.card {
+  list-style: none;
+  background-color: #ffd2d1;
+  padding: 20px;
+  box-shadow: 2px 3px 5px #ddd;
+  border-radius: 5px;
 }
