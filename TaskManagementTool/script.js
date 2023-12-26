@@ -3,6 +3,7 @@ let items = document.querySelectorAll('.item')
 let mainContainers = document.querySelectorAll('.main') 
 let allDeleteBtn = document.querySelectorAll('.deleteBtn') 
 let allAddBtn = document.querySelectorAll('.addBtn') 
+let allDeleteAllBtn = document.querySelectorAll('.deleteAllBtn') 
 
 
 function dragStart() {
@@ -50,6 +51,9 @@ function inputField() {
         addCard(mainDiv, inputValue)
        }
     })
+
+    // Focus on the input field after it's created
+    input.focus();
 }
 
 function addCard(mainDiv, value) {
@@ -76,6 +80,11 @@ function addCard(mainDiv, value) {
     div.addEventListener('dragend', dragEnd)
     
 }
+
+function deleteAll(){
+    this.parentElement.previousElementSibling.innerHTML =''
+}
+
 items.forEach(item =>{
     item.addEventListener('dragstart', dragStart)
     item.addEventListener('dragend', dragEnd)
@@ -95,4 +104,8 @@ allDeleteBtn.forEach(deleteBtn=>{
 
 allAddBtn.forEach(addBtn=>{
     addBtn.addEventListener('click', inputField)
+})
+
+allDeleteAllBtn.forEach(deleteAllBtn=>{
+    deleteAllBtn.addEventListener('click', deleteAll)
 })
