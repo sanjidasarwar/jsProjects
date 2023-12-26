@@ -5,7 +5,6 @@ let allDeleteBtn = document.querySelectorAll('.deleteBtn')
 let allAddBtn = document.querySelectorAll('.addBtn') 
 
 
-
 function dragStart() {
     draggedItem = this;
     setTimeout(() => this.classList.add('d-none'), 0)
@@ -38,13 +37,28 @@ function deleteItem() {
     this.parentElement.remove()
 }
 
-function addCard() {
+function inputField() {
     let mainDiv= this.parentElement.previousElementSibling
+    let input= document.createElement('input')
+    input.setAttribute('class','form-control')
+    input.type='text'
+    mainDiv.appendChild(input)
+    input.addEventListener('keypress', function (e) {
+       if(e.key==='Enter'){
+        let inputValue =input.value
+        input.classList.add('d-none')
+        addCard(mainDiv, inputValue)
+       }
+    })
+}
+
+function addCard(mainDiv, value) {
     let div= document.createElement('div')
     div.setAttribute('class', 'bg-white p-3 mb-3 shadow item d-flex justify-content-between')
+    div.draggable=true
 
     let span1 = document.createElement('span')
-    span1.innerText='test'
+    span1.innerText=value
     let span2 = document.createElement('span')
     span2.setAttribute('class', 'deleteBtn')
     span2.addEventListener('click', deleteItem);
@@ -56,6 +70,10 @@ function addCard() {
     div.appendChild(span1)
     div.appendChild(span2)
     mainDiv.appendChild(div)
+
+    // to create the div draggable
+    div.addEventListener('dragstart', dragStart)
+    div.addEventListener('dragend', dragEnd)
     
 }
 items.forEach(item =>{
@@ -76,5 +94,5 @@ allDeleteBtn.forEach(deleteBtn=>{
 })
 
 allAddBtn.forEach(addBtn=>{
-    addBtn.addEventListener('click', addCard)
+    addBtn.addEventListener('click', inputField)
 })
