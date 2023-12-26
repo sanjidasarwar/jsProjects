@@ -1,10 +1,10 @@
 let draggedItem = null
 let items = document.querySelectorAll('.item') 
 let mainContainers = document.querySelectorAll('.main') 
-items.forEach(item =>{
-    item.addEventListener('dragstart', dragStart)
-    item.addEventListener('dragend', dragEnd)
-})
+let allDeleteBtn = document.querySelectorAll('.deleteBtn') 
+
+
+
 function dragStart() {
     draggedItem = this;
     setTimeout(() => this.classList.add('d-none'), 0)
@@ -32,9 +32,23 @@ function dragDrop() {
     this.append(draggedItem);
 }
 
+function deleteItem() {
+    this.parentElement.remove()
+}
+
+items.forEach(item =>{
+    item.addEventListener('dragstart', dragStart)
+    item.addEventListener('dragend', dragEnd)
+})
+
 mainContainers.forEach(container =>{
     container.addEventListener('dragover', dragOver)
     container.addEventListener('dragenter', dragEnter)
     container.addEventListener('dragleave', dragLeave)
     container.addEventListener('drop', dragDrop)
+})
+
+
+allDeleteBtn.forEach(deleteBtn=>{
+    deleteBtn.addEventListener('click', deleteItem)
 })
