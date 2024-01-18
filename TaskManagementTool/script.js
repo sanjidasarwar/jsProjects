@@ -5,6 +5,9 @@ let allDeleteBtn = document.querySelectorAll('.deleteBtn')
 let allAddBtn = document.querySelectorAll('.addBtn') 
 let allDeleteAllBtn = document.querySelectorAll('.deleteAllBtn') 
 
+let allCol = document.querySelectorAll('.col') 
+let row = document.querySelector('.row') 
+
 
 function dragStart() {
     draggedItem = this;
@@ -109,3 +112,15 @@ allAddBtn.forEach(addBtn=>{
 allDeleteAllBtn.forEach(deleteAllBtn=>{
     deleteAllBtn.addEventListener('click', deleteAll)
 })
+
+// for draggable column
+
+allCol.forEach(item =>{
+    item.addEventListener('dragstart', dragStart)
+    item.addEventListener('dragend', dragEnd)
+})
+
+row.addEventListener('dragover', dragOver)
+row.addEventListener('dragenter', dragEnter)
+row.addEventListener('dragleave', dragLeave)
+row.addEventListener('drop', dragDrop)
