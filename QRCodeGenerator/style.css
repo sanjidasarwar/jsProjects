@@ -37,3 +37,17 @@ input{
     color: #fff;
     font-size: 18px;
 }
+
+#qr-code{
+    text-align: center;
+    margin-top: 10px;
+}
+
+a{
+    display: block;
+    text-decoration: none;
+    background-color: #1cbde6;
+    padding: 10px;
+    color: #fff;
+    margin-top: 10px;
+}
