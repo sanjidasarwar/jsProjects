@@ -33,6 +33,6 @@ span.active{
         transform: translate(0,0) rotate(180deg);
     }
     100%{
-        transform: scale(2.5) translate(0, -180px);
+        transform: scale(2) translate(0, -100px);
     }
 }
