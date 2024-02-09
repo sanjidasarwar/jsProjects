@@ -42,6 +42,9 @@ li{
 .btnContainer{
     display: flex;
     justify-content: space-between;
+    position: absolute;
+    bottom: 10px;
+    width: 90%;
 }
 
 .nextBtn, .previousBtn, .startBtn{

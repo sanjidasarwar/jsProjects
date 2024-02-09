@@ -164,7 +164,7 @@ const quizArray=[
 
     startBtn.addEventListener('click',function(){
         container.classList.remove('centerItem')
-        this.style.visibility='hidden'
+        this.style.display='none'
         createQuiz()
         btnContainer.classList.remove('d-none')
     })
