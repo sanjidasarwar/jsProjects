@@ -117,9 +117,11 @@ const quizArray=[
     }
     ]
 
+    let currentQuestion= 0
+    const quizCard = document.getElementById('quizCard') 
+    
     function createQuiz() {
-        const quizCard = document.getElementById('quizCard') 
-        let currentQuestion= 0
+        quizCard.innerHTML = ''
         let slNumber =currentQuestion+1
 
         const questionDiv = document.createElement('h3')
@@ -158,10 +160,16 @@ const quizArray=[
     const startBtn= document.querySelector('.startBtn')
     const container= document.querySelector('.container')
     const btnContainer=document.querySelector('.btnContainer')
+    const nextBtn=document.querySelector('.nextBtn')
 
     startBtn.addEventListener('click',function(){
         container.classList.remove('centerItem')
         this.style.visibility='hidden'
         createQuiz()
         btnContainer.classList.remove('d-none')
+    })
+
+    nextBtn.addEventListener('click', function () {
+        currentQuestion++
+        createQuiz()
     })
