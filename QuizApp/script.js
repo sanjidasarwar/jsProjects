@@ -153,6 +153,15 @@ const quizArray=[
         quizCard.appendChild(questionDiv)
         quizCard.appendChild(ul)
 
+        if(currentQuestion===0){
+            previousBtn.style.visibility='hidden'
+        }else{
+            previousBtn.style.visibility='visible'
+        }
+
+        if(currentQuestion=== (quizArray.length-1)){
+            nextBtn.innerText ='Submit'
+        }
     }
 
     // createQuiz()
@@ -161,6 +170,8 @@ const quizArray=[
     const container= document.querySelector('.container')
     const btnContainer=document.querySelector('.btnContainer')
     const nextBtn=document.querySelector('.nextBtn')
+    const previousBtn=document.querySelector('.previousBtn')
+
 
     startBtn.addEventListener('click',function(){
         container.classList.remove('centerItem')
@@ -171,5 +182,9 @@ const quizArray=[
 
     nextBtn.addEventListener('click', function () {
         currentQuestion++
+        createQuiz()
+    })
+    previousBtn.addEventListener('click', function () {
+        currentQuestion--
         createQuiz()
     })
