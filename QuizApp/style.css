@@ -42,20 +42,13 @@ li{
 .btnContainer{
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
 }
 
-.nextBtn, .previousBtn{
-    /* width: 100%; */
-    /* display: block; */
+.nextBtn, .previousBtn, .startBtn{
     padding: 10px 20px;
     color:#fff;
-    /* font-size: 1.2rem; */
     border: none;
-    /* position: absolute;
-    bottom: 0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px; */
+    cursor: pointer;
 }
 
 .previousBtn{
@@ -64,4 +57,19 @@ li{
 
 .nextBtn{
     background-color: #0b5bc8;
+}
+
+.startBtn{
+    background-color: #54c554;
+
+}
+
+.centerItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-none{
+    display: none;
 }

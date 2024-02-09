@@ -7,30 +7,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h3>Questions</h3>
-        <ul>
-            <li>
-                <input type="radio" name="answer" id="option-1">
-                <label for="option-1">option 1</label>
-            </li>
-            <li>
-                <input type="radio" name="answer" id="option-2">
-                <label for="option-2">option 2</label>
-            </li>
-            <li>
-                <input type="radio" name="answer" id="option-3">
-                <label for="option-3">option 3</label>
-            </li>
-            <li>
-                <input type="radio" name="answer" id="option-4">
-                <label for="option-4">option 4</label>
-            </li>
-        </ul>
-        <div class="btnContainer">
+    <div class="container centerItem">
+       <div id="quizCard"></div>
+       <button class="startBtn">Start</button>
+        <div class="btnContainer d-none">
             <button class="previousBtn">Previous</button>
             <button class="nextBtn">Next</button>
         </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
