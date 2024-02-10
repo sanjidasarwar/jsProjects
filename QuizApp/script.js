@@ -107,7 +107,7 @@ const quizArray=[
     "type": "multiple",
     "difficulty": "easy",
     "category": "Sports",
-    "question": "This Canadian television sportscaster is known for his &quot;Hockey Night in Canada&quot; role, a commentary show during hockey games.",
+    "q uestion": "This Canadian television sportscaster is known for his &quot;Hockey Night in Canada&quot; role, a commentary show during hockey games.",
     "correct_answer": "Don Cherry",
     "incorrect_answers": [
     "Don McKellar",
@@ -127,6 +127,10 @@ const quizArray=[
     const nextBtn=document.querySelector('.nextBtn')
     const previousBtn=document.querySelector('.previousBtn')
     
+    quizArray.forEach(quiz=>{
+        quiz.selected_answer = null
+    })
+
     // createQuiz()
     function createQuiz() {
         quizCard.innerHTML = ''
@@ -150,6 +154,10 @@ const quizArray=[
                 input.id = `option${index}`
                 input.name = 'answer'
                 input.value= option
+                if(quizArray[currentQuestion].selected_answer===option){
+                    input.checked= true
+                }
+
                 li.appendChild(input)
 
                 const label =  document.createElement('label')
@@ -193,10 +201,12 @@ const quizArray=[
    
     function checkScore() {
         const selectedAns = document.querySelector('input[name="answer"]:checked');
+        quizArray[currentQuestion].selected_answer = selectedAns.value
+
         if(selectedAns && selectedAns.value === quizArray[currentQuestion].correct_answer){
             score++
         }
-
+        console.log(quizArray[currentQuestion].selected_answer);
         console.log(score);
     }
 
