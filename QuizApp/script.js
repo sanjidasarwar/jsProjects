@@ -201,12 +201,23 @@ const quizArray=[
    
     function checkScore() {
         const selectedAns = document.querySelector('input[name="answer"]:checked');
-        quizArray[currentQuestion].selected_answer = selectedAns.value
 
-        if(selectedAns && selectedAns.value === quizArray[currentQuestion].correct_answer){
-            score++
+        if(selectedAns){
+            const currentAns = selectedAns.value
+            const previousAns = quizArray[currentQuestion].selected_answer
+            
+            // Update the selected answer
+            quizArray[currentQuestion].selected_answer = currentAns
+
+            if(currentAns !== previousAns){
+                if(currentAns === quizArray[currentQuestion].correct_answer){
+                    score++
+                }
+                if(previousAns === quizArray[currentQuestion].correct_answer){
+                    score--
+                }
+            }
         }
-        console.log(quizArray[currentQuestion].selected_answer);
         console.log(score);
     }
 
