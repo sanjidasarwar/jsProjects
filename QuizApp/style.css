@@ -47,7 +47,7 @@ li{
     width: 90%;
 }
 
-.nextBtn, .previousBtn, .startBtn{
+.nextBtn, .previousBtn, .startBtn, .restartBtn{
     padding: 10px 20px;
     color:#fff;
     border: none;
@@ -64,7 +64,10 @@ li{
 
 .startBtn{
     background-color: #54c554;
+}
 
+.restartBtn{
+    background-color: #273095;
 }
 
 .centerItem{

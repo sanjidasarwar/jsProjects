@@ -118,40 +118,64 @@ const quizArray=[
     ]
 
     let currentQuestion= 0
+    let score = 0
     const quizCard = document.getElementById('quizCard') 
+    const startBtn= document.querySelector('.startBtn')
+    const restartBtn= document.querySelector('.restartBtn')
+    const container= document.querySelector('.container')
+    const btnContainer=document.querySelector('.btnContainer')
+    const nextBtn=document.querySelector('.nextBtn')
+    const previousBtn=document.querySelector('.previousBtn')
     
+    // createQuiz()
     function createQuiz() {
         quizCard.innerHTML = ''
         let slNumber =currentQuestion+1
 
-        const questionDiv = document.createElement('h3')
-        questionDiv.innerText = slNumber +'.' + quizArray[currentQuestion].question
+        if(currentQuestion<=quizArray.length-1){
 
-        const ul =  document.createElement('ul')
-        
-        const correctAns =quizArray[currentQuestion].correct_answer
-        const incorrectAns =quizArray[currentQuestion].incorrect_answers
-        
-        const options = [correctAns, ...incorrectAns]
-        options.forEach(option => {
-            const li =  document.createElement('li')
-            const input =  document.createElement('input')
-            input.type= "radio"
-            input.id = `option${slNumber}`
-            li.appendChild(input)
+            const questionDiv = document.createElement('h3')
+            questionDiv.innerText = slNumber +'.' + quizArray[currentQuestion].question
 
-            const label =  document.createElement('label')
-            label.for=`option${slNumber}`
-            label.innerText=option
-            li.appendChild(label)
+            const ul =  document.createElement('ul')
+            
+            const correctAns =quizArray[currentQuestion].correct_answer
+            const incorrectAns =quizArray[currentQuestion].incorrect_answers
+            
+            const options = [correctAns, ...incorrectAns]
+            options.forEach((option, index) => {
+                const li =  document.createElement('li')
+                const input =  document.createElement('input')
+                input.type= "radio"
+                input.id = `option${index}`
+                input.name = 'answer'
+                input.value= option
+                li.appendChild(input)
 
-            ul.appendChild(li)
-        })
+                const label =  document.createElement('label')
+                label.for=`option${index}`
+                label.innerText=option
+                li.appendChild(label)
+
+                ul.appendChild(li)
+            })
 
 
-        
-        quizCard.appendChild(questionDiv)
-        quizCard.appendChild(ul)
+            
+            quizCard.appendChild(questionDiv)
+            quizCard.appendChild(ul)
+
+        }else{
+            quizCard.innerHTML = `your score is ${score} out of ${quizArray.length}`
+            btnContainer.classList.add('d-none')
+            restartBtn.classList.remove('d-none')
+            container.classList.add('centerItem')
+        }
+
+        const checkboxes = document.querySelectorAll('input[name="answer"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', checkScore);
+            });
 
         if(currentQuestion===0){
             previousBtn.style.visibility='hidden'
@@ -159,18 +183,22 @@ const quizArray=[
             previousBtn.style.visibility='visible'
         }
 
-        if(currentQuestion=== (quizArray.length-1)){
+        if(currentQuestion=== quizArray.length-1){
             nextBtn.innerText ='Submit'
         }
+        
     }
 
-    // createQuiz()
+    // check score
+   
+    function checkScore() {
+        const selectedAns = document.querySelector('input[name="answer"]:checked');
+        if(selectedAns && selectedAns.value === quizArray[currentQuestion].correct_answer){
+            score++
+        }
 
-    const startBtn= document.querySelector('.startBtn')
-    const container= document.querySelector('.container')
-    const btnContainer=document.querySelector('.btnContainer')
-    const nextBtn=document.querySelector('.nextBtn')
-    const previousBtn=document.querySelector('.previousBtn')
+        console.log(score);
+    }
 
 
     startBtn.addEventListener('click',function(){
@@ -187,4 +215,10 @@ const quizArray=[
     previousBtn.addEventListener('click', function () {
         currentQuestion--
         createQuiz()
+    })
+
+    restartBtn.addEventListener('click',function(){
+        this.style.display='none'
+        createQuiz()
+        btnContainer.classList.remove('d-none')
     })
