@@ -107,7 +107,7 @@ const quizArray=[
     "type": "multiple",
     "difficulty": "easy",
     "category": "Sports",
-    "q uestion": "This Canadian television sportscaster is known for his &quot;Hockey Night in Canada&quot; role, a commentary show during hockey games.",
+    "question": "This Canadian television sportscaster is known for his &quot;Hockey Night in Canada&quot; role, a commentary show during hockey games.",
     "correct_answer": "Don Cherry",
     "incorrect_answers": [
     "Don McKellar",
@@ -130,12 +130,13 @@ const quizArray=[
     quizArray.forEach(quiz=>{
         quiz.selected_answer = null
     })
-
+    quizArray.sort(() => Math.random() - 0.5)
+    console.log( Math.random() - 0.5);
     // createQuiz()
     function createQuiz() {
         quizCard.innerHTML = ''
         let slNumber =currentQuestion+1
-
+        
         if(currentQuestion<=quizArray.length-1){
 
             const questionDiv = document.createElement('h3')
@@ -147,7 +148,7 @@ const quizArray=[
             const incorrectAns =quizArray[currentQuestion].incorrect_answers
             
             const options = [correctAns, ...incorrectAns]
-            options.forEach((option, index) => {
+            options.sort(() => Math.random() - 0.5).forEach((option, index) => {
                 const li =  document.createElement('li')
                 const input =  document.createElement('input')
                 input.type= "radio"

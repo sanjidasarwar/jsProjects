@@ -47,6 +47,13 @@ li{
     width: 90%;
 }
 
+.header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+}
+
 .nextBtn, .previousBtn, .startBtn, .restartBtn{
     padding: 10px 20px;
     color:#fff;
