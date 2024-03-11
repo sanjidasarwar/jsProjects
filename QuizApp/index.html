@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz App</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container centerItem">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="initialPage">
+        <button class="startBtn">Start</button>
+      </div>
+      <div id="quizPage" class="d-none">
         <div class="header">
-            <div class="number-of-count">
-              <span class="number-of-question">1 of 3 questions</span>
-            </div>
-            <div class="timer-div">
-              <span class="time-left">10s</span>
-            </div>
+          <div class="number-of-count">
+            <span class="number-of-question"></span>
+          </div>
+          <div class="timer-div">
+            <span class="time-left"></span>
+          </div>
         </div>
-       <div id="quizCard"></div>
-       <button class="startBtn">Start</button>
-        <div class="btnContainer d-none">
-            <button class="previousBtn">Previous</button>
-            <button class="nextBtn">Next</button>
+        <div id="quizCard"></div>
+        <div id="footer" class="btnContainer">
+          <button class="previousBtn">Previous</button>
+          <button class="nextBtn">Next</button>
         </div>
-       <button class="restartBtn d-none">Restart</button>
+        <div id="lastPage">
+          <button class="restartBtn">Restart</button>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

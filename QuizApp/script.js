@@ -119,24 +119,36 @@ const quizArray=[
 
     let currentQuestion= 0
     let score = 0
-    const quizCard = document.getElementById('quizCard') 
+    const initialPage = document.querySelector('#initialPage')
+    const quizPage = document.querySelector('#quizPage')
+    const footer = document.querySelector('#footer')
+    const lastPage = document.querySelector('#lastPage')
     const startBtn= document.querySelector('.startBtn')
-    const restartBtn= document.querySelector('.restartBtn')
-    const container= document.querySelector('.container')
-    const btnContainer=document.querySelector('.btnContainer')
     const nextBtn=document.querySelector('.nextBtn')
+    const restartBtn= document.querySelector('.restartBtn')
     const previousBtn=document.querySelector('.previousBtn')
-    
-    quizArray.forEach(quiz=>{
-        quiz.selected_answer = null
-    })
+    const quizCard = document.getElementById('quizCard') 
+    const timeLeft=document.querySelector('.time-left')
+    let count =5
+    timeLeft.innerHTML= `${count}s`
+    let countdown
+
+    let slNumber =currentQuestion+1
+
     quizArray.sort(() => Math.random() - 0.5)
-    console.log( Math.random() - 0.5);
+
+    function createHeader(){
+        const numberOfQuestion=document.querySelector('.number-of-question')
+        numberOfQuestion.innerHTML=`${slNumber} of ${quizArray.length} questions`
+
+    }
+
     // createQuiz()
     function createQuiz() {
         quizCard.innerHTML = ''
-        let slNumber =currentQuestion+1
-        
+
+        createHeader()
+
         if(currentQuestion<=quizArray.length-1){
 
             const questionDiv = document.createElement('h3')
@@ -175,31 +187,39 @@ const quizArray=[
             quizCard.appendChild(ul)
 
         }else{
-            quizCard.innerHTML = `your score is ${score} out of ${quizArray.length}`
-            btnContainer.classList.add('d-none')
-            restartBtn.classList.remove('d-none')
-            container.classList.add('centerItem')
+            displayLastPage()
         }
 
-        const checkboxes = document.querySelectorAll('input[name="answer"]');
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('click', checkScore);
-            });
-
+        // Hide previous button in first question
         if(currentQuestion===0){
             previousBtn.style.visibility='hidden'
         }else{
             previousBtn.style.visibility='visible'
         }
 
+        // hide next button in last question
         if(currentQuestion=== quizArray.length-1){
             nextBtn.innerText ='Submit'
         }
+
+
+        const checkboxes = document.querySelectorAll('input[name="answer"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', checkScore);
+            });
+
         
     }
 
+    function displayLastPage(){
+        quizCard.innerHTML = `<h1>your score is ${score} out of ${quizArray.length}</h1>`
+            quizCard.style.textAlign = 'center'
+            quizCard.style.marginTop = '20px'
+            footer.style.display='none'
+            lastPage.style.display='flex'
+    }
+
     // check score
-   
     function checkScore() {
         const selectedAns = document.querySelector('input[name="answer"]:checked');
 
@@ -219,28 +239,57 @@ const quizArray=[
                 }
             }
         }
-        console.log(score);
     }
 
+    // timer 
 
-    startBtn.addEventListener('click',function(){
-        container.classList.remove('centerItem')
-        this.style.display='none'
+    function timerDisplay() {
+
+        countdown = setInterval(()=>{
+                count--
+                timeLeft.innerHTML= `${count}s`
+                if(count==0){
+                    clearInterval(countdown)
+                    displayLastPage()
+                }
+        },1000)
+            
+    }
+
+    function startQuiz(){
+        initialPage.style.display='none'
+        quizPage.classList.remove('d-none')
+        timerDisplay()
         createQuiz()
-        btnContainer.classList.remove('d-none')
-    })
+    }
 
-    nextBtn.addEventListener('click', function () {
+    function displayNextQuesion() {
         currentQuestion++
         createQuiz()
-    })
-    previousBtn.addEventListener('click', function () {
+    }
+
+    function displayPreviousQuesion() {
         currentQuestion--
         createQuiz()
-    })
+    } 
 
-    restartBtn.addEventListener('click',function(){
-        this.style.display='none'
-        createQuiz()
-        btnContainer.classList.remove('d-none')
-    })
+    function restartQuiz(){
+        lastPage.style.display='none'
+        currentQuestion=0
+        startQuiz()
+        quizCard.style.textAlign = 'left'
+        quizCard.style.marginTop = '10px'
+        footer.style.display='flex'
+        count=5
+        timeLeft.innerHTML= `${count}s`;
+    }
+
+   function initial(){
+
+   }
+   
+
+   startBtn.addEventListener('click', startQuiz)
+   nextBtn.addEventListener('click', displayNextQuesion)
+   previousBtn.addEventListener('click', displayPreviousQuesion)
+   restartBtn.addEventListener('click',restartQuiz)
