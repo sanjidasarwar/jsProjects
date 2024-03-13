@@ -4,8 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id="main">
+        <h2>Password Generator</h2>
+        <div id="allField">
+            <div class="result">
+                <input type="text" name="" id="inputText" value="" placeholder="Password">
+                <button id="copy" type="submit">Copy</button>
+            </div>
+            <div class="setting">
+                <label for="length">Length</label>
+                <input type="number" name="length" id="length">
+            </div>
+            <div class="setting">
+                <label for="uppercase">Uppercase</label>
+                <input type="checkbox" name="uppercase" id="uppercase">
+            </div>
+            <div class="setting">
+                <label for="lowercase">Lowercase</label>
+                <input type="checkbox" name="lowercase" id="lowercase">
+            </div>
+            <div class="setting">
+                <label for="number">Number</label>
+                <input type="checkbox" name="number" id="number">
+            </div>
+            <div class="setting">
+                <label for="symbol">Symbol</label>
+                <input type="checkbox" name="symbol" id="symbol">
+            </div>
+        </div>
+        <button id="generateBtn" type="submit">Generate Code</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
