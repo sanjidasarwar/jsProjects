@@ -42,3 +42,12 @@ generateBtn.addEventListener('click', function(){
 
 })
 
+copyBtn.addEventListener('click', function(){
+    if(inputText.value ==''){
+     alert( 'Please generate password first')
+    }else{
+      // loading the content into our clipboard
+      navigator.clipboard.writeText(inputText.value);
+      alert('Your password has been copied')
+    }
+ })
