@@ -21,4 +21,17 @@ weightOptions.forEach(select=>{
 })
 
 
+function calculateWeight (){
+    let input = initailWeightValue.value
 
+    if(initailWeight.value=='kg' && convertedWeight.value=='pound'){
+        let result = input *2.20462
+
+        convertedWeightValue.value = result.toFixed(4);
+    }
+}
+
+initailWeightValue.addEventListener('input', calculateWeight)
+
+
+calculateWeight()
