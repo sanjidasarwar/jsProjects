@@ -20,18 +20,44 @@ weightOptions.forEach(select=>{
     
 })
 
+function calculateWeight (inputField){
+    let input;
+    let result;
 
-function calculateWeight (){
-    let input = initailWeightValue.value
+    if(inputField.id == 'convertedWeightValue'){
+        input = convertedWeightValue.value;
+    }else{
+        input = initailWeightValue.value;
+    }
 
     if(initailWeight.value=='kg' && convertedWeight.value=='pound'){
-        let result = input *2.20462
+        if(inputField.id == 'convertedWeightValue'){
+            result = input /2.20462
 
-        convertedWeightValue.value = result.toFixed(4);
-    }
+            initailWeightValue.value = result.toFixed(4);
+            // to activate the field editable
+            initailWeightValue.removeAttribute('readonly');
+        }else{
+            result = input *2.20462
+
+            convertedWeightValue.value = result.toFixed(4);
+            // to activate the field editable
+            convertedWeightValue.removeAttribute('readonly');
+        }    
+    }                      
+
+
 }
 
-initailWeightValue.addEventListener('input', calculateWeight)
+initailWeightValue.addEventListener('input', function(){
+    calculateWeight(initailWeightValue)
+})
+convertedWeightValue.addEventListener('input', function(){
+    calculateWeight(convertedWeightValue)
+})
 
 
-calculateWeight()
+
+calculateWeight(initailWeightValue)
+
+
