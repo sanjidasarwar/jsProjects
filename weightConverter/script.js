@@ -4,12 +4,8 @@ const convertedWeight = document.querySelector("#convertedWeight");
 const convertedWeightInput = document.querySelector("#convertedWeightValue");
 const weightOptions = document.querySelectorAll(".weightOptions");
 
-// let initailWeightValue = "";
-// let convertedWeightValue = "";
-
 initailWeightInput.value = '1';
 
-// Conversion rates between units
 const conversionRates = {
     kg: {
       pound: 2.20462,
@@ -36,12 +32,6 @@ const conversionRates = {
 weightOptions.forEach((select) => {
   select.addEventListener("change", function () {
     const allOptions = this.options;
-    // if (this.id == "initailWeight") {
-    //   initailWeightValue = allOptions[this.selectedIndex].value;
-    // }
-    // if (this.id == "convertedWeight") {
-    //   convertedWeightValue = allOptions[this.selectedIndex].value;
-    // }
 
     for (let i = 0; i < allOptions.length; i++) {
       if (allOptions[i].hasAttribute("selected")) {
